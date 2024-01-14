@@ -44,7 +44,7 @@ app.get('/secretWord', (req, res) => {
     res.render("secretWord", { secretWord: req.session.secretWord });
 })
 app.post("/secretWord", (req, res) => {
-    if (req.body.secretWord.toUpperCase() == 'P') {
+    if (req.body.secretWord.toUpperCase()[0] == 'P') {
         req.flash("error", "That word won't work!")
         req.flash("error", "You can't use words that start with p.");
     } else {
