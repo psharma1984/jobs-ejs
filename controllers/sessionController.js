@@ -16,7 +16,7 @@ const registerDo = async (req, res, next) => {
         await User.create(req.body);
     } catch (e) {
         if (e.constructor.name === "ValidationError") {
-            parse_v(e, req);
+            parseVErr(e, req);
         } else if (e.name === "MongoServerError" && e.code === 11000) {
             req.flash("error", "That email address is already registered.");
         } else {
