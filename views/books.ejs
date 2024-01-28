@@ -1,0 +1,37 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/header.ejs") %>
+<h2>Books List</h2>
+<a href="/books/new">
+    <button type="button">Add a book</button>
+</a>
+    <table id="books-table">
+      <tr id="books-table-header">
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Genres</th>
+        <th colspan="2"></th>
+      </tr>
+      <% if (books && books.length) { %>
+        <% books.forEach((book) => { %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.price %></td>
+            <td><%= book.genres %></td>
+            <td>
+                <a href="/books/edit/<%= book.id %>">
+                    <button type="button">edit</button>
+                </a>
+            </td>
+            <td>
+                <form method="POST" action="/books/delete/<%= book.id %>" style="display: inline">
+                    <button>delete</button>
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                </form>
+            </td>
+          </tr>
+        <% }) %>
+      <% } %>
+    </table>
+    <%- include("partials/footer.ejs") %>

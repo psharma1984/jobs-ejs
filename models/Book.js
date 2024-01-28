@@ -15,7 +15,7 @@ const BookSchema = new mongoose.Schema({
     },
     genres: {
         type: String,
-        enum: ['fiction', 'non-fiction', 'childrens', 'literature', 'sports', 'magazines'],
+        enum: ['fiction', 'non-fiction', 'childrens', 'sports'],
         default: 'non-fiction',
     },
     createdBy: {
