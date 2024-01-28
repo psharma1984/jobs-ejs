@@ -5,4 +5,15 @@ const parseValidationErrors = (e, req) => {
     });
 };
 
-module.exports = parseValidationErrors;
+const handleErrors = (error, req, res, redirectPath = '/books') => {
+    if (error.name === 'ValidationError') {
+        const errors = parseValidationErrors(error);
+        req.flash('error', errors);
+        res.redirect(redirectPath);
+    } else {
+        res.status(500);
+        req.flash('error', 'An internal server error occurred.');
+        res.redirect(redirectPath);
+    }
+};
+module.exports = handleErrors;
